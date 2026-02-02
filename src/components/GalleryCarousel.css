@@ -1,0 +1,131 @@
+.gallery-section {
+    background: var(--bg-dark);
+    padding: 100px 0;
+}
+
+.gallery-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 0 10px;
+}
+
+.gallery-title {
+    font-size: 3rem;
+    /* Larger and impactful */
+    font-weight: 700;
+    color: #E45A1A;
+    /* Orange */
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+.carousel-wrapper {
+    position: relative;
+    padding: 0 60px;
+    /* Space for buttons */
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+.nav-btn:hover {
+    background: #E45A1A;
+    border-color: #E45A1A;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel {
+    cursor: grab;
+    overflow: hidden;
+}
+
+.inner-carousel {
+    display: flex;
+    gap: 32px;
+}
+
+.item {
+    min-width: 400px;
+    /* Slightly wider cards */
+    height: 250px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    pointer-events: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: transform 0.5s ease;
+}
+
+.item:hover img {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .gallery-header {
+        margin-bottom: 24px;
+    }
+
+    .carousel-wrapper {
+        padding: 0;
+    }
+
+    /* On mobile, buttons might overlay content or be hidden if drag is enough. 
+       Let's keep them small overlays or hide them if user prefers swiping. 
+       Usually better to hide on mobile if touch is available, but let's keep them small. */
+    .nav-btn {
+        width: 36px;
+        height: 36px;
+        background: rgba(0, 0, 0, 0.5);
+        /* Stronger bg for visibility over images */
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+
+    .item {
+        min-width: 280px;
+        height: 200px;
+    }
+
+    .gallery-title {
+        font-size: 2.2rem;
+    }
+}
