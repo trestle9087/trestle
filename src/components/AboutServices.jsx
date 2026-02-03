@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import './AboutServices.css';
 import abrahamImg from '../assets/abraham.jpg';
@@ -8,6 +8,20 @@ const teamImg = "https://raw.githubusercontent.com/manu18ac-dot/Imagenes/refs/he
 const lauraProfile = "https://raw.githubusercontent.com/manu18ac-dot/Imagenes/refs/heads/main/FOTO_LAU2_.jpg";
 
 const AboutServices = () => {
+    const scrollRef = useRef(null);
+
+    const scroll = (direction) => {
+        const { current } = scrollRef;
+        if (current) {
+            const scrollAmount = 430; // Card width (400) + gap (30)
+            if (direction === 'left') {
+                current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+    };
+
     return (
         <section className="about-services" id="about">
             <div className="about-header-image">
@@ -108,14 +122,16 @@ const AboutServices = () => {
             {/* SERVICES SECTION */}
             <div className="about-services-section">
                 <div className="container">
-                    <motion.h3
-                        className="services-title"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        Our services
-                    </motion.h3>
+                    <div className="services-header-row">
+                        <motion.h3
+                            className="services-title"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            Our services
+                        </motion.h3>
+                    </div>
                     <motion.p
                         className="services-description"
                         initial={{ opacity: 0, y: 30 }}
@@ -131,63 +147,93 @@ const AboutServices = () => {
                         correction post-production services.
                     </motion.p>
 
-                    <div className="services-grid">
-                        {/* Service 1 */}
-                        <motion.div
-                            className="service-card"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            whileHover={{ y: -10 }}
-                        >
-                            <div className="card-top-accent"></div>
-                            <div className="service-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/manu18ac-dot/Imagenes/refs/heads/main/D28A3C00-7310-40CA-AF7B-C917FA0FC4E6.jpeg" alt="Scouting" loading="lazy" />
-                            </div>
-                            <div className="service-content">
-                                <h4>Scouting and Locations</h4>
-                                <p>Process of finding and securing real-world settings for film, TV, and commercial projects.</p>
-                            </div>
-                        </motion.div>
+                    <div className="services-carousel-wrapper" ref={scrollRef}>
+                        <div className="services-grid">
+                            {/* Service 1 */}
+                            <motion.div
+                                className="service-card"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                            >
+                                <div className="card-top-accent"></div>
+                                <div className="service-img-wrapper">
+                                    <img src="https://raw.githubusercontent.com/manu18ac-dot/Imagenes/refs/heads/main/D28A3C00-7310-40CA-AF7B-C917FA0FC4E6.jpeg" alt="Scouting" loading="lazy" />
+                                </div>
+                                <div className="service-content">
+                                    <h4>Scouting and Locations</h4>
+                                    <p>Process of finding and securing real-world settings for film, TV, and commercial projects.</p>
+                                </div>
+                            </motion.div>
 
-                        {/* Service 2 - Using park image placeholder or existing if not precise match, user img link was SectionOne img2. In image user showed "Film Crew Accomodations" on card 2. I will use img2 from SectionOne for now as placeholder for accommodations or production. Wait, img2 from SectionOne is '0B88...'. User image 'uploaded_media...' shows card 2 is "Film Crew Accomodations". I'll use SectionOne's img2 or a placeholder. I will use img2 for now. */}
-                        <motion.div
-                            className="service-card"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
-                            whileHover={{ y: -10 }}
-                        >
-                            <div className="card-top-accent"></div>
-                            <div className="service-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/manu18ac-dot/Imagenes/refs/heads/main/0B88CCDB-2C82-4D54-9D14-89DD844D6519_1_105_c.jpeg" alt="Accomodations" loading="lazy" />
-                            </div>
-                            <div className="service-content">
-                                <h4>Film Crew Accomodations</h4>
-                                <p>We can arrange the best places for a great place to rest to the entire crew.</p>
-                            </div>
-                        </motion.div>
+                            {/* Service 2 */}
+                            <motion.div
+                                className="service-card"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                            >
+                                <div className="card-top-accent"></div>
+                                <div className="service-img-wrapper">
+                                    <img src="https://raw.githubusercontent.com/manu18ac-dot/Imagenes/refs/heads/main/49D4B5BB-7203-49C7-8192-B88D73A6537E_4_5005_c.jpeg" alt="Accomodations" loading="lazy" />
+                                </div>
+                                <div className="service-content">
+                                    <h4>Film Crew Accomodations</h4>
+                                    <p>We can arrange the best places for a great place to rest to the entire crew.</p>
+                                </div>
+                            </motion.div>
 
-                        {/* Service 3 */}
-                        <motion.div
-                            className="service-card"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.4 }}
-                            whileHover={{ y: -10 }}
-                        >
-                            <div className="card-top-accent"></div>
-                            <div className="service-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/manu18ac-dot/Imagenes/refs/heads/main/3E853575-CD96-43EF-9B40-6AF2F1DB9291_1_102_a.jpeg" alt="Production Services" loading="lazy" />
-                            </div>
-                            <div className="service-content">
-                                <h4>Production Services</h4>
-                                <p>Specialized services that provide comprehensive support in the realization of various productions.</p>
-                            </div>
-                        </motion.div>
+                            {/* Service 3 */}
+                            <motion.div
+                                className="service-card"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.4 }}
+                            >
+                                <div className="card-top-accent"></div>
+                                <div className="service-img-wrapper">
+                                    <img src="https://raw.githubusercontent.com/manu18ac-dot/Imagenes/refs/heads/main/3E853575-CD96-43EF-9B40-6AF2F1DB9291_1_102_a.jpeg" alt="Production Services" loading="lazy" />
+                                </div>
+                                <div className="service-content">
+                                    <h4>Production Services</h4>
+                                    <p>Specialized services that provide comprehensive support in the realization of various productions.</p>
+                                </div>
+                            </motion.div>
+
+                            {/* Service 4: Post Production (New) */}
+                            <motion.div
+                                className="service-card"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.5 }}
+                            >
+                                <div className="card-top-accent"></div>
+                                <div className="service-img-wrapper">
+                                    <img src="https://raw.githubusercontent.com/manu18ac-dot/Imagenes/refs/heads/main/Italya2/IMG_4313%20copia.jpg" alt="Post Production" loading="lazy" />
+                                </div>
+                                <div className="service-content">
+                                    <h4>Post Production Services</h4>
+                                    <p>Assembly of filmed material, editing of sequences, incorporation of music, dubbing, and sound effects.</p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+
+                    <div className="carousel-controls">
+                        <button className="carousel-btn prev" onClick={() => scroll('left')} aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </button>
+                        <button className="carousel-btn next" onClick={() => scroll('right')} aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>

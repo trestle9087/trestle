@@ -63,12 +63,12 @@
 }
 
 .highlight-text {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 1.4;
     color: #1a1a1a;
     /* Dark text */
-    margin-bottom: 32px;
-    font-weight: 400;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .orange-bold {
@@ -78,14 +78,15 @@
 
 .orange-text {
     color: #E45A1A;
+    font-weight: 700;
 }
 
 .secondary-text {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     line-height: 1.5;
-    color: #4a4a4a;
-    /* Dark gray secondary text */
-    font-weight: 300;
+    color: #1a1a1a;
+    /* Dark secondary text same as highlight */
+    font-weight: 700;
 }
 
 /* RESPONSIVE */
